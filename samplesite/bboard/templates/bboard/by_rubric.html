@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{current_rubric.name}}</title>
+  </head>
+  <body>
+    <h3>Anoncements</h3>
+    <h4>Rubrics: {{current_rubric.name}}</h4>
+    <div>
+      <a href="{%url 'index'%}">Main</a>
+      {% for rubric in rubrics %}
+      <a href="{%url 'by_rubric' rubric.pk%}"</a>
+      {% endfor %}
+    </div>
+    {% for bb in bbs %}
+    <div>
+      <h4>{{bb.title}}</h4>
+      <p>{{bb.content}}</p>
+      <p>{{bb.published|date:"d.m.Y"}}</p>
+    </div>
+    {% endfor %}
+  </body>
+</html>

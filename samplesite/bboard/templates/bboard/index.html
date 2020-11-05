@@ -1,20 +1,29 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="{% static 'css/bboard.css'%}">
-</head>
-<body>
-  <h1>Dashboard</h1>
-  {% for b in bbs %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/bboard.css'%}" />
+  </head>
+  <body>
+    <h1>Dashboard</h1>
+    <div>
+      <a href="{%url 'index'%}">Main</a>
+      {% for rubric in rubrics %}
+      <a href="{%url 'by_rubric' rubric.pk%}">{{rubric.name}}</a>
+      {% endfor %}
+    </div>
+    {% for b in bbs %}
     <div>
       <h3>{{b.title}}</h3>
       <p>{{b.content}}</p>
+      <p><a href="{%url 'by_rubric' b.rubric.pk%}">
+        {{b.rubric.name}}
+      </a></p>
       <p>{{b.publised|date:'d.m.Y'}}</p>
     </div>
-  {% endfor %}
-</body>
+    {% endfor %}
+  </body>
 </html>
